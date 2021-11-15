@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "281521507866",
+    "project_id": "get-away-62249",
+    "storage_bucket": "get-away-62249.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281521507866:android:b4a2986bae0b6ac5258ba3",
+        "android_client_info": {
+          "package_name": "com.example.final_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281521507866-o381t0ifib393pp24579ncfu2js21m5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJfv-Ctc6P1hGfERVnZtVLqqVAk18YOW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281521507866-o381t0ifib393pp24579ncfu2js21m5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
