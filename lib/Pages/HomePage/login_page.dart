@@ -1,4 +1,5 @@
-import 'package:final_project/signup.dart';
+import 'package:final_project/Pages/CustomWidgets/Custom_button.dart';
+import 'package:final_project/Pages/HomePage/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -32,7 +33,8 @@ class _LoginState extends State<Login> {
         body: SafeArea(
           child: Stack(children: [
             Image.network(
-              "https://cdn.wallpapersafari.com/73/11/Ybg26x.jpg",
+              "https://res.cloudinary.com/getawayimagecloud/image/"
+                  "upload/v1637332401/getAwayImages/Ybg26x_nh9a7y.jpg",
               height: size.height,
               width: size.width,
               fit: BoxFit.cover,
@@ -96,29 +98,16 @@ class _LoginState extends State<Login> {
                                       color: Colors.black)),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              validator();
-                            },
-                            child: Text(
-                              "LogIn",
-                              style: TextStyle(fontSize: 25),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.blueGrey,
-                                //padding: const EdgeInsets.all(25),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 40)),
-                          ),
+                          CustomButton(buttonName: "Login", onPress: (){validator();},),
                           Row(children: [
-                            Text("I Have Not Account"),
+                            Text("I Don't Have an Account"),
                             SizedBox(
                               width: 5,
                             ),
                             GestureDetector(
                               onTap: () {},
                               child: InkWell(
-                                  child: Text("Login",
+                                  child: Text("SignUp Here",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.blueAccent)),

@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-class feedBack extends StatefulWidget {
+class FeedBack extends StatefulWidget {
   // const feedback({Key? key}) : super(key: key);
 
   @override
-  _feedbackState createState() => _feedbackState();
+  _FeedbackState createState() => _FeedbackState();
 }
 
-class _feedbackState extends State<feedBack> {
+class _FeedbackState extends State<FeedBack> {
   double rating = 4.0;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,8 @@ class _feedbackState extends State<feedBack> {
       body: SafeArea(
         child: Stack(children: [
           Image.network(
-            "https://cdn.wallpapersafari.com/73/11/Ybg26x.jpg",
+            "https://res.cloudinary.com/getawayimagecloud/image/"
+                "upload/v1637332401/getAwayImages/Ybg26x_nh9a7y.jpg",
             height: size.height,
             width: size.width,
             fit: BoxFit.cover,
@@ -73,21 +73,21 @@ class _feedbackState extends State<feedBack> {
                             style: TextStyle(fontSize: 18)),
                       ),
                       SizedBox(width: 10),
-                      SmoothStarRating(
-                        rating: rating,
-                        size: 35,
-                        filledIconData: Icons.star,
-                        halfFilledIconData: Icons.star_half,
-                        defaultIconData: Icons.star_border,
-                        starCount: 5,
-                        allowHalfRating: false,
-                        spacing: 2.0,
-                        onRated: (value) {
-                          setState(() {
-                            rating = value;
-                          });
-                        },
-                      ),
+                      // SmoothStarRating(
+                      //   rating: rating,
+                      //   size: 35,
+                      //   filledIconData: Icons.star,
+                      //   halfFilledIconData: Icons.star_half,
+                      //   defaultIconData: Icons.star_border,
+                      //   starCount: 5,
+                      //   allowHalfRating: false,
+                      //   spacing: 2.0,
+                      //   onRated: (value) {
+                      //     setState(() {
+                      //       rating = value;
+                      //     });
+                      //   },
+                      // ),
                     ]),
                     SizedBox(
                       height: 10,

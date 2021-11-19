@@ -1,9 +1,10 @@
+import 'package:final_project/Pages/CustomWidgets/Custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'login.dart';
+import 'login_page.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -41,7 +42,8 @@ class _SignUpState extends State<SignUp> {
       body: SafeArea(
         child: Stack(children: [
           Image.network(
-            "https://cdn.wallpapersafari.com/73/11/Ybg26x.jpg",
+            "https://res.cloudinary.com/getawayimagecloud/image/"
+                "upload/v1637332401/getAwayImages/Ybg26x_nh9a7y.jpg",
             height: size.height,
             width: size.width,
             fit: BoxFit.cover,
@@ -104,7 +106,7 @@ class _SignUpState extends State<SignUp> {
                               } else if (!RegExp(
                                       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                   .hasMatch(value!)) {
-                                return "Email Is Invalide";
+                                return "Email Is Invalid";
                               }
                               return "";
                             },
@@ -171,32 +173,20 @@ class _SignUpState extends State<SignUp> {
                           SizedBox(
                             height: 20,
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              validation();
-                            },
-                            child: Text(
-                              "SignUp",
-                              style: TextStyle(fontSize: 25),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.blueGrey,
-                                //padding: const EdgeInsets.all(25),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 40)),
-                          ),
+                          CustomButton(buttonName: "SignUp",onPress: (){validation();}),
+
                           SizedBox(
                             height: 10,
                           ),
                           Row(children: [
-                            Text("I Have Not Account"),
+                            Text("I Have Account"),
                             SizedBox(
                               width: 5,
                             ),
                             GestureDetector(
                               onTap: () {},
                               child: InkWell(
-                                  child: Text("SignUp",
+                                  child: Text("Login",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.blueAccent)),

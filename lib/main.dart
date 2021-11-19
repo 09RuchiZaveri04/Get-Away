@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'HomeScreen.dart';
+import 'Pages/HomePage/HomeScreen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,8 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Stack(
           children: [
             Image.network(
-                "https://c4.wallpaperflare.com/wallpaper/778/928/14/tent-night-"
-                "camping-starry-sky-wallpaper-preview.jpg",
+                "https://res.cloudinary.com/getawayimagecloud/"
+                    "image/upload/v1637331620/getAwayImages/splash_yw1j4w.jpg",
                 width: size.width,
                 fit: BoxFit.cover,
                 height: size.height),

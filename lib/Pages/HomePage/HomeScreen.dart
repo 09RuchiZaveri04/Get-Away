@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:final_project/feedback.dart';
-import 'package:final_project/login.dart';
+import 'package:final_project/Pages/CustomWidgets/offer_container.dart';
+import 'package:final_project/Pages/Drawer/Custom_drawer.dart';
+import 'package:final_project/Pages/Drawer/feedback.dart';
+import 'package:final_project/Pages/HomePage/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,87 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  CarouselController buttonCarouselController = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       //backgroundColor: Colors.black,
-      drawer: Drawer(
-        child: Container(
-          color: Colors.black,
-          child: ListView(children: [
-            ListTile(
-              title: Text(
-                'Home',
-                style: TextStyle(color: Colors.white),
-              ),
-              leading: Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
-              },
-            ),
-            ListTile(
-              title: Text(
-                'Setting',
-                style: TextStyle(color: Colors.white),
-              ),
-              leading: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              onTap: () {
-                print("Clicked");
-              },
-            ),
-            ListTile(
-              title: Text(
-                'FeedBack',
-                style: TextStyle(color: Colors.white),
-              ),
-              leading: Icon(
-                Icons.feedback,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => feedBack()));
-              },
-            ),
-            ListTile(
-              title: Text(
-                'Notification',
-                style: TextStyle(color: Colors.white),
-              ),
-              leading: Icon(
-                Icons.notifications,
-                color: Colors.white,
-              ),
-              onTap: () {
-                print("Clicked");
-              },
-            ),
-            ListTile(
-              title: Text(
-                'LogOut',
-                style: TextStyle(color: Colors.white),
-              ),
-              leading: Icon(
-                Icons.logout,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Login()));
-              },
-            ),
-          ]),
-        ),
-      ),
+      drawer: CustomDrawer(),
       body: CustomScrollView(slivers: [
         SliverAppBar(
           expandedHeight: 50,
@@ -110,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           delegate: SliverChildListDelegate([
             Stack(children: [
               Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUxRxQOaef1JaB4J2fPMfzCKvp2ucsxiPFbw&usqp=CAU",
+                "https://res.cloudinary.com/getawayimagecloud/"
+                    "image/upload/v1637331106/getAwayImages/images_u5whgf.jpg",
                 fit: BoxFit.cover,
                 height: size.longestSide,
               ),
@@ -155,30 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                CarouselSlider(
-                    carouselController: buttonCarouselController,
-                    options: CarouselOptions(
-                      height: 250.0,
-                      enlargeCenterPage: true,
-                      autoPlayAnimationDuration: Duration(milliseconds: 10),
-                    ),
-                    items: [
-                      Image.network(
-                        "https://img.freepik.com/free-vector/banner-template-with-asia-travel-concept-design-advertise-marketing-watercolor-vector-illustration_83728-5305.jpg?size=338&ext=jpg",
-                        fit: BoxFit.cover,
-                        width: size.width,
-                      ),
-                      Image.network(
-                        "https://indiater.com/wp-content/uploads/2019/03/dubai-city-tour-travel-agency-banner-free-psd.jpg",
-                        fit: BoxFit.cover,
-                        width: size.width,
-                      ),
-                      Image.network(
-                        "https://www.urbanyatra.com/wp-content/uploads/2021/09/andaman.jpg",
-                        fit: BoxFit.cover,
-                        width: size.width,
-                      ),
-                    ]),
+                OfferContainer(),
                 SizedBox(
                   height: 25,
                   //width: 20,
@@ -221,7 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 180.0,
                             color: Colors.transparent,
                             child: Image.network(
-                                "https://www.intermiles.com/_next/image?url=https://www.intermilesresources.com/iwov-resources/images/blog/10-amazing-indian-roads-for-a-long-drive/long-drive-mobile-414x233.jpg&w=640&q=75",
+                                "https://res.cloudinary.com/getawayimagecloud/"
+                                    "image/upload/v1637330633/getAwayImages/"
+                                    "long-drive-mobile-414x233_nrjw9b.jpg",
                                 fit: BoxFit.cover)),
                         Positioned(
                           bottom: 10,
@@ -242,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 180.0,
                           color: Colors.transparent,
                           child: Image.network(
-                            "https://coolthemestores.com/wp-content/uploads/2021/06/mountain-wallpaper-background-1.jpg",
+                            "https://res.cloudinary.com/getawayimagecloud/image/upload/v1637330480/getAwayImages/mountain-wallpaper-background-1_kqrlh7.jpg",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -269,7 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 180.0,
                           color: Colors.transparent,
                           child: Image.network(
-                            "http://www.travellingadda.com/wp-content/uploads/2021/03/honeymoon-destination-1.jpg",
+                            "https://res.cloudinary.com/getawayimagecloud/"
+                                "image/upload/v1637330428/getAwayImages"
+                                "/honeymoon-destination-1_kjmhce.jpg",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -292,7 +202,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 180.0,
                           color: Colors.transparent,
                           child: Image.network(
-                            "https://www.lifewire.com/thmb/wwxq7jp-2tjL6nq_2B0YxWKXw4E=/1920x1080/filters:fill(auto,1)/tropical-beach-wallpaper-beach-backgrounds-587fbb765f9b584db3241860.jpg",
+                            "https://res.cloudinary.com/getawayimagecloud/"
+                                "image/upload/v1637330906/getAwayImages/"
+                                "tropical-beach-wallpaper-beach-backgrounds-"
+                                "587fbb765f9b584db3241860_l5vaas.jpg",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -339,7 +252,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvw5TjJykaBdaO3NP5fSXFKmOI_92ZPxDZnw&usqp=CAU"),
+                                      "https://res.cloudinary.com/"
+                                          "getawayimagecloud/image/upload/"
+                                          "v1637330954/getAwayImages/"
+                                          "images_orpsdr.jpg"),
                                   fit: BoxFit.fill)),
                         ),
                         Text(
@@ -359,7 +275,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUl9tcrlgLz1otvqjaDyrSYT2ISFSo10xjgA&usqp=CAU"),
+                                      "https://res.cloudinary.com/"
+                                          "getawayimagecloud/image/upload/"
+                                          "v1637330992/getAwayImages/"
+                                          "images_xtwvs0.jpg"),
                                   fit: BoxFit.fill)),
                         ),
                         Text(
@@ -379,7 +298,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://www.indianluxurytrains.com/blog/wp-content/uploads/2015/02/ananda-yoga-retreat.jpg"),
+                                      "https://res.cloudinary.com/"
+                                          "getawayimagecloud/image/upload/"
+                                          "v1637331027/getAwayImages/"
+                                          "ananda-yoga-retreat_z5pgia.jpg"),
                                   fit: BoxFit.fill)),
                         ),
                         Text(
