@@ -1,4 +1,7 @@
 import 'package:final_project/Pages/CustomWidgets/Custom_button.dart';
+import 'package:final_project/Pages/CustomWidgets/change_screen.dart';
+import 'package:final_project/Pages/CustomWidgets/password_textform.dart';
+import 'package:final_project/Pages/CustomWidgets/text_form_field.dart';
 import 'package:final_project/Pages/HomePage/signup_page.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +50,7 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 300,
+                      height: 400,
                       width: double.infinity,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,70 +58,54 @@ class _LoginState extends State<Login> {
                           Text(
                             "Login",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 50),
+                                fontWeight: FontWeight.normal, fontSize: 52,
+                                fontFamily:'Lobster',color: Colors.black,
+                                shadows: [
+                                  Shadow(
+                                      blurRadius: 5,
+                                      color: Colors.pinkAccent,
+                                      offset: Offset(2.0, 2.0))
+                                ]
+                              ),
+
                           ),
-                          TextFormField(
+                          MyTextFormField(
+                            name:"Email",
                             validator: (value) {
                               if (value == "") {
                                 return "Please Fill Email";
-                              } else if (!regExp.hasMatch(value!)) {
+                              }
+                              else if (!regExp.hasMatch(value!)) {
                                 return "Email Is Invalide";
                               }
                               return "";
-                            },
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: "Email",
-                                hintStyle: TextStyle(color: Colors.black)),
+                              }, onChanged: (String value) {  },
                           ),
-                          TextFormField(
-                            obscureText: obserText,
-                            validator: (value) {
-                              if (value == "") {
-                                return "Please Fill Password";
-                              } else if (value!.length < 8) {
-                                return "Password Is Invalide";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "Password",
-                              hintStyle: TextStyle(color: Colors.black),
-                              suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      obserText = !obserText;
-                                    });
-                                  },
-                                  child: Icon(
-                                      obserText == true
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                      color: Colors.black)),
-                            ),
-                          ),
+                          PasswordTextForm (validator:  (value) {
+                            if (value == "") {
+                              return "Please Fill Password";
+                            } else if (value!.length < 8) {
+                              return "Password Is Invalide";
+                            }
+                            return "";
+                          },
+                            name: "Password", obserText: obserText,
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              setState(() {
+                                obserText = !obserText;
+                              });
+                            }, onChanged: (String value) {  },),
                           CustomButton(buttonName: "Login", onPress: (){validator();},),
-                          Row(children: [
-                            Text("I Don't Have an Account"),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: InkWell(
-                                  child: Text("SignUp Here",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.blueAccent)),
-                                  onTap: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => SignUp()));
-                                  }),
-                            )
-                          ])
+                          SizedBox(
+                            height: 5,
+                          ),
+                          ChangeScreen(name: "SignUp", onTap: (){Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SignUp()));
+                          },
+                              account: "I Don't Have An Account!")
                         ],
                       ),
                     )

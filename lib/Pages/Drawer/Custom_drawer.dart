@@ -10,11 +10,13 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-
       child: Container(
         color: Colors.black,
-        child: ListView(children: [
+        child: ListView(
+
+            children: [
           ListTile(
+
             title: Text(
               'Home',
               style: TextStyle(color: Colors.white),

@@ -1,5 +1,11 @@
+import 'package:final_project/Pages/CustomWidgets/Custom_button.dart';
+import 'package:final_project/Pages/CustomWidgets/text_form_field.dart';
+//import 'package:final_project/Pages/Drawer/Custom_drawer.dart';
+import 'package:final_project/Pages/HomePage/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 
 class FeedBack extends StatefulWidget {
   // const feedback({Key? key}) : super(key: key);
@@ -7,6 +13,9 @@ class FeedBack extends StatefulWidget {
   @override
   _FeedbackState createState() => _FeedbackState();
 }
+String p =
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+RegExp regExp = new RegExp(p);
 
 class _FeedbackState extends State<FeedBack> {
   double rating = 4.0;
@@ -28,6 +37,15 @@ class _FeedbackState extends State<FeedBack> {
           SingleChildScrollView(
             child: Column(children: [
               Container(
+                alignment: Alignment.topLeft,
+                child: IconButton( icon: new Icon(Icons.arrow_back,size: 32,),
+                  onPressed: () { Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => HomeScreen())); },),
+              ),
+
+              Container(
                 height: 250,
                 width: double.infinity,
                 child: Column(
@@ -36,7 +54,14 @@ class _FeedbackState extends State<FeedBack> {
                     Text(
                       "Travel Satisfaction Form",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.normal,
+                              fontFamily: 'Lobster',
+                              shadows: [
+                                Shadow(
+                                    blurRadius: 5,
+                                    color: Colors.pinkAccent,
+                                    offset: Offset(2.0, 2.0))
+                              ]),
                     ),
                   ],
                 ),
@@ -50,45 +75,59 @@ class _FeedbackState extends State<FeedBack> {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    TextField(
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.length < 6) {
+                          return "Your Name Is Too Short";
+                        } else if (value == "") {
+                          return "Please Fill Your Name";
+                        }
+                        return "";
+                      },
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Name',
-                      ),
+                          hintText: "Full Name",
+                          hintStyle: TextStyle(color: Colors.black),
+                          border: OutlineInputBorder()),
+                    ),
+                    SizedBox(height:10),
+                    MyTextFormField(
+                      name:"Email",
+                      validator: (value) {
+                        if (value == "") {
+                          return "Please Fill Email";
+                        }
+                        else if (!regExp.hasMatch(value!)) {
+                          return "Email Is Invalide";
+                        }
+                        return "";
+                      }, onChanged: (String value) {  },
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(), hintText: 'Email'),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
+                    Row(
+                      children: [Align(
+                        alignment: Alignment.center,
                         child: Text("OverAll Satisfaction:",
-                            style: TextStyle(fontSize: 18)),
+                             style: TextStyle(fontSize: 18)),
                       ),
-                      SizedBox(width: 10),
-                      // SmoothStarRating(
-                      //   rating: rating,
-                      //   size: 35,
-                      //   filledIconData: Icons.star,
-                      //   halfFilledIconData: Icons.star_half,
-                      //   defaultIconData: Icons.star_border,
-                      //   starCount: 5,
-                      //   allowHalfRating: false,
-                      //   spacing: 2.0,
-                      //   onRated: (value) {
-                      //     setState(() {
-                      //       rating = value;
-                      //     });
-                      //   },
-                      // ),
-                    ]),
+
+                    SizedBox(width: 10) ,
+                    RatingBar.builder(
+                      initialRating: 3,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemBuilder: (context, _) => Icon(
+                      Icons.flight,
+                      color: Colors.redAccent,
+                       ),
+                      onRatingUpdate: (rating) {
+                      print(rating);
+                      },
+                    ),
+                      ]),
                     SizedBox(
                       height: 10,
                     ),
@@ -99,18 +138,8 @@ class _FeedbackState extends State<FeedBack> {
                     SizedBox(
                       height: 15,
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Submit",
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.transparent,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 40)),
-                    ),
-                  ],
+                    CustomButton(buttonName: "Login", onPress: (){},),
+                    ],
                 ),
               ),
             ]),

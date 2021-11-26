@@ -1,9 +1,12 @@
 import 'package:final_project/Pages/CustomWidgets/Custom_button.dart';
+import 'package:final_project/Pages/CustomWidgets/change_screen.dart';
+import 'package:final_project/Pages/CustomWidgets/password_textform.dart';
+import 'package:final_project/Pages/CustomWidgets/text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'login_page.dart';
 
 class SignUp extends StatefulWidget {
@@ -15,25 +18,29 @@ class SignUp extends StatefulWidget {
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 bool obserText = true;
+String p =
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+RegExp regExp = new RegExp(p);
 String email = "";
 String password = "";
 
 class _SignUpState extends State<SignUp> {
   void validation() async {
     final FormState? _form = _formKey.currentState;
+    Firebase.initializeApp();
     if (_form!.validate()) {
+      print('yes');
       try {
-        final result = await FirebaseAuth.instance
+         var result = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
         print(result.user!.uid);
       } on PlatformException catch (e) {
         print(e.message.toString());
       }
     } else {
-      print("no");
+       print("no");
     }
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,7 +70,15 @@ class _SignUpState extends State<SignUp> {
                           Text(
                             "Register",
                             style: TextStyle(
-                                fontSize: 50, fontWeight: FontWeight.bold),
+                                fontSize: 50, fontWeight: FontWeight.normal,
+                              fontFamily: 'Lobster',
+                                shadows: [
+                                  Shadow(
+                                      blurRadius: 5,
+                                      color: Colors.pinkAccent,
+                                      offset: Offset(2.0, 2.0))
+                                ]
+                            ),
                           ),
                         ],
                       ),
@@ -77,100 +92,68 @@ class _SignUpState extends State<SignUp> {
                       width: double.infinity,
                       child: Column(
                         children: [
-                          TextFormField(
-                            validator: (value) {
-                              if (value!.length < 6) {
-                                return "UserName Is Too Short";
-                              } else if (value == "") {
-                                return "Please Fill UserName";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                                hintText: "UserName",
-                                hintStyle: TextStyle(color: Colors.black),
-                                border: OutlineInputBorder()),
-                          ),
+                          MyTextFormField(validator: (value){
+                            if (value!.length < 6) {
+                              return "UserName Is Too Short";
+                            } else if (value == "") {
+                              return "Please Fill UserName";
+                            }
+                            return "";
+
+                          }, name: 'UserName', onChanged: (String value) {  },),
                           SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            onChanged: (value) {
-                              setState(() {
-                                email = value;
-                              });
-                            },
+                          MyTextFormField(
+                            name:"Email",
                             validator: (value) {
                               if (value == "") {
                                 return "Please Fill Email";
-                              } else if (!RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                  .hasMatch(value!)) {
+                              }
+                              else if (!regExp.hasMatch(value!)) {
                                 return "Email Is Invalid";
                               }
                               return "";
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Email",
-                                hintStyle: TextStyle(color: Colors.black),
-                                border: OutlineInputBorder()),
+                            }, onChanged: (String value) { setState(() {
+                               email = value   ;
+                               print(email);
+                            }); },
                           ),
-                          SizedBox(
+                           SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            obscureText: obserText,
-                            onChanged: (value) {
+                          PasswordTextForm (validator:  (value) {
+                            if (value == "") {
+                              return "Please Fill Password";
+                            } else if (value!.length < 8) {
+                              return "Password Is Invalide";
+                            }
+                            return "";
+                          },
+                            name: "Password", obserText: obserText,
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
                               setState(() {
-                                password = value;
+                                obserText = !obserText;
                               });
-                            },
-                            validator: (value) {
-                              if (value == "") {
-                                return "Please Fill Password";
-                              } else if (value!.length < 8) {
-                                return "Password Is Too Short";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      obserText = !obserText;
-                                    });
-
-                                    FocusScope.of(context).unfocus();
-                                  },
-                                  child: Icon(
-                                    obserText == true
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintStyle: TextStyle(color: Colors.black),
-                                border: OutlineInputBorder()),
-                          ),
+                            }, onChanged: (String value) { setState(() {
+                               password = value  ;
+                               print(password);
+                            }); },),
                           SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            validator: (value) {
-                              if (value == "") {
-                                return "PLease Fill Phone Number";
-                              } else if (value!.length < 11) {
-                                return "Phone NumberMust Be 10";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Phone No.",
-                                hintStyle: TextStyle(color: Colors.black),
-                                border: OutlineInputBorder()),
-                          ),
-                          SizedBox(
+                          MyTextFormField(validator:(value) {
+                            if (value == "") {
+                              return "PLease Fill Phone Number";
+                            } else if (value!.length > 11) {
+                              return "Phone NumberMust Be 10";
+                            }
+                            return "";
+                          } , name: 'Phone No.', onChanged: (String value) {
+
+                          },),
+                           SizedBox(
                             height: 20,
                           ),
                           CustomButton(buttonName: "SignUp",onPress: (){validation();}),
@@ -178,26 +161,11 @@ class _SignUpState extends State<SignUp> {
                           SizedBox(
                             height: 10,
                           ),
-                          Row(children: [
-                            Text("I Have Account"),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: InkWell(
-                                  child: Text("Login",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.blueAccent)),
-                                  onTap: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Login()));
-                                  }),
-                            )
-                          ])
+                          ChangeScreen(name: "LogIn", onTap: (){Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => Login()));},
+                              account: "I Already Have An Account!")
                         ],
                       ),
                     ),
