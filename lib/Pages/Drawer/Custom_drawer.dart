@@ -1,8 +1,9 @@
 import 'package:final_project/Pages/HomePage/HomeScreen.dart';
+import 'package:final_project/Pages/HomePage/account_setting.dart';
 import 'package:final_project/Pages/HomePage/login_page.dart';
 import 'package:flutter/material.dart';
 
-import 'feedback.dart';
+import '../HomePage/feedback.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -12,11 +13,44 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         color: Colors.black,
-        child: ListView(
-
-            children: [
+        child: ListView(children: [
           ListTile(
-
+            title: Text(
+              'Hi Ruchi\n'
+              'ruchi@gmail.com',
+              style: TextStyle(color: Colors.white),
+            ),
+            leading: Icon(
+              Icons.account_circle,
+              color: Colors.white,
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => Account()));
+            },
+          ),
+          Divider(
+            color: Colors.white54,
+            thickness: 2,
+          ),
+          ListTile(
+            title: Text(
+              'My Account',
+              style: TextStyle(color: Colors.white),
+            ),
+            leading: Icon(
+              Icons.contacts,
+              color: Colors.white,
+            ),
+            onTap: () {
+              print("Clicked");
+            },
+          ),
+          Divider(
+            thickness: 2,
+            color: Colors.white54,
+          ),
+          ListTile(
             title: Text(
               'Home',
               style: TextStyle(color: Colors.white),
@@ -29,6 +63,10 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => HomeScreen()));
             },
+          ),
+          Divider(
+            color: Colors.white54,
+            thickness: 2,
           ),
           ListTile(
             title: Text(
@@ -43,6 +81,10 @@ class CustomDrawer extends StatelessWidget {
               print("Clicked");
             },
           ),
+          Divider(
+            color: Colors.white54,
+            thickness: 2,
+          ),
           ListTile(
             title: Text(
               'FeedBack',
@@ -53,9 +95,13 @@ class CustomDrawer extends StatelessWidget {
               color: Colors.white,
             ),
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => FeedBack()));
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => FeedBack()));
             },
+          ),
+          Divider(
+            color: Colors.white54,
+            thickness: 2,
           ),
           ListTile(
             title: Text(
@@ -69,6 +115,10 @@ class CustomDrawer extends StatelessWidget {
             onTap: () {
               print("Clicked");
             },
+          ),
+          Divider(
+            color: Colors.white54,
+            thickness: 2,
           ),
           ListTile(
             title: Text(
