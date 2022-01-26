@@ -1,9 +1,27 @@
-import 'package:final_project/Pages/Trip_Ideas/type_of_trip.dart';
+//import 'package:final_project/Pages/HomePage/HomeScreenip.dart';
 import 'package:flutter/material.dart';
 
 class NextEscape extends StatelessWidget {
-  const NextEscape({Key? key}) : super(key: key);
+  //const NextEscape({Key? key}) : super(key: key);
+  final String name;
+  final String image1;
+  final String name1;
+  final String image2;
+  final String name2;
+  final String image3;
+  final String name3;
+  final String image4;
 
+  NextEscape({
+    required this.name,
+    required this.image1,
+    required this.name1,
+    required this.image2,
+    required this.name2,
+    required this.image3,
+    required this.name3,
+    required this.image4,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,14 +39,14 @@ class NextEscape extends StatelessWidget {
                       height: 180.0,
                       color: Colors.transparent,
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => TripIdeas()));
-                        },
+                        // onTap: () {
+                        //   Navigator.pushReplacement(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (context) => TrendingDestination()));
+                        // },
                         child: Image.network(
-                          "https://res.cloudinary.com/getawayimagecloud/"
-                          "image/upload/v1637330633/getAwayImages/"
-                          "long-drive-mobile-414x233_nrjw9b.jpg",
+                          image1,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -37,7 +55,7 @@ class NextEscape extends StatelessWidget {
                       bottom: 10,
                       left: 5,
                       child: Text(
-                        "Gateway for the \nWeekend",
+                        name1,
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -54,13 +72,14 @@ class NextEscape extends StatelessWidget {
                       height: 180.0,
                       color: Colors.transparent,
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => TripIdeas()));
-                        },
+                        // onTap: () {
+                        //   Navigator.pushReplacement(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (_) => TrendingDestination()));
+                        // },
                         child: Image.network(
-                          "https://img2.10bestmedia.com/Images/Photos/"
-                          "351377/GettyImages-607468652_54_990x660.jpg",
+                          image2,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -69,7 +88,7 @@ class NextEscape extends StatelessWidget {
                         bottom: 10,
                         left: 5,
                         child: Text(
-                          "Gateway to the\n Mountains",
+                          name,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -80,7 +99,7 @@ class NextEscape extends StatelessWidget {
                 ),
               ]),
           SizedBox(
-            height: 10,
+            height: 15,
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,15 +113,15 @@ class NextEscape extends StatelessWidget {
                       height: 180.0,
                       color: Colors.transparent,
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => TripIdeas()));
-                        },
+                        // onTap: () {
+                        //   Navigator.pushReplacement(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (_) =>
+                        //               TrendingDestination()));
+                        // },
                         child: Image.network(
-                          "https://res.cloudinary.com/getawayimagecloud/"
-                          "image/upload/v1637330906/getAwayImages/"
-                          "tropical-beach-wallpaper-beach-backgrounds-"
-                          "587fbb765f9b584db3241860_l5vaas.jpg",
+                          image3,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -110,11 +129,13 @@ class NextEscape extends StatelessWidget {
                     Positioned(
                       bottom: 10,
                       left: 5,
-                      child: Text("Relax on the beach",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: Colors.white)),
+                      child: Text(
+                        name2,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            backgroundColor: Colors.white),
+                      ),
                     ),
                   ]),
                 ),
@@ -126,25 +147,30 @@ class NextEscape extends StatelessWidget {
                       height: 180.0,
                       color: Colors.transparent,
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => TripIdeas()));
-                        },
+                        // onTap: () {
+                        //   Navigator.pushReplacement(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (_) =>
+                        //               TrendingDestination()));
+                        // },
                         child: Image.network(
-                          "https://toib.b-cdn.net/wp-content/uploads/2019/05/lakshadweep.jpg",
+                          image4,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     Positioned(
-                      bottom: 10,
-                      left: 5,
-                      child: Text("Honeymoon \n Destination",
+                        bottom: 10,
+                        left: 5,
+                        child: Text(
+                          name3,
                           style: TextStyle(
-                              fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              backgroundColor: Colors.white)),
-                    ),
+                              fontSize: 18,
+                              color: Colors.black87,
+                              backgroundColor: Colors.white),
+                        )),
                   ]),
                 ),
               ]),

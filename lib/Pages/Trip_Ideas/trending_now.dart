@@ -1,4 +1,3 @@
-import 'package:final_project/Pages/Trending_Now/trending_destination.dart';
 import 'package:flutter/material.dart';
 
 class Trending extends StatefulWidget {
@@ -20,12 +19,12 @@ class _TrendingState extends State<Trending> {
               padding: EdgeInsets.only(left: 10),
               child: Stack(children: [
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => TrendingDestination()));
-                  },
+                  // onTap: () {
+                  //   Navigator.pushReplacement(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (_) => TrendingDestination()));
+                  // },
                   child: Container(
                     height: 190,
                     width: 150,

@@ -1,7 +1,44 @@
-import 'package:final_project/Pages/Trip_Ideas/type_of_trip.dart';
+import 'package:final_project/Pages/Destinations/destination.dart';
+import 'package:final_project/Pages/Trip_Ideas/td_constructor.dart';
+import 'package:final_project/provider/category_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Activity extends StatelessWidget {
+class Activity extends StatefulWidget {
+  late final String name;
+  final String image;
+  final String name1;
+  final String image1;
+  final String name2;
+  final String image2;
+
+  Activity(
+      {required this.name,
+      required this.image,
+      required this.name1,
+      required this.image1,
+      required this.name2,
+      required this.image2});
+
+  @override
+  State<Activity> createState() => _ActivityState();
+}
+
+class _ActivityState extends State<Activity> {
+  List<Destination> destination = [];
+  providerValue() async {
+    destination = await Provider.of<CategoryProvider>(context, listen: false)
+        .getYogaData();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    providerValue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -23,7 +60,11 @@ class Activity extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => TripIdeas()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TDconst(
+                                dest: destination,
+                              )));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 5.0),
@@ -33,17 +74,13 @@ class Activity extends StatelessWidget {
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: NetworkImage("https://res.cloudinary.com/"
-                              "getawayimagecloud/image/upload/"
-                              "v1637330954/getAwayImages/"
-                              "images_orpsdr.jpg"),
-                          fit: BoxFit.fill),
+                          image: NetworkImage(widget.image), fit: BoxFit.fill),
                     ),
                   ),
                 ),
               ),
               Text(
-                "Camping &\n  Bonfire",
+                widget.name,
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -58,8 +95,12 @@ class Activity extends StatelessWidget {
               child: Column(children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => TripIdeas()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TDconst(
+                                  dest: destination,
+                                )));
                   },
                   child: Container(
                     width: 120,
@@ -67,15 +108,12 @@ class Activity extends StatelessWidget {
                     decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: NetworkImage("https://res.cloudinary.com/"
-                                "getawayimagecloud/image/upload/"
-                                "v1637330992/getAwayImages/"
-                                "images_xtwvs0.jpg"),
+                            image: NetworkImage(widget.image1),
                             fit: BoxFit.fill)),
                   ),
                 ),
                 Text(
-                  "   Water \nActivities",
+                  widget.name1,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -90,7 +128,11 @@ class Activity extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => TripIdeas()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TDconst(
+                                dest: destination,
+                              )));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 5.0),
@@ -100,16 +142,13 @@ class Activity extends StatelessWidget {
                     decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: NetworkImage("https://res.cloudinary.com/"
-                                "getawayimagecloud/image/upload/"
-                                "v1637331027/getAwayImages/"
-                                "ananda-yoga-retreat_z5pgia.jpg"),
+                            image: NetworkImage(widget.image2),
                             fit: BoxFit.fill)),
                   ),
                 ),
               ),
               Text(
-                "   Yoga \nCamping",
+                widget.name2,
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -120,5 +159,6 @@ class Activity extends StatelessWidget {
         ],
       ),
     ]);
+    // });
   }
 }

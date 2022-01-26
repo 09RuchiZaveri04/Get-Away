@@ -1,5 +1,7 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:final_project/Pages/CustomWidgets/text_form_field.dart';
 import 'package:final_project/Pages/HomePage/HomeScreen.dart';
+import 'package:final_project/Pages/HomePage/feedback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,6 +17,13 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+  String email = "";
+  //String p =
+  //  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  //RegExp regExp = new RegExp(p);
+  static const pattern = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$';
+  final regExpt = RegExp(pattern);
+
   String? _dateTime;
   String? dateTime;
   SingingCharacter? _character = SingingCharacter.male;
@@ -297,24 +306,62 @@ class _AccountState extends State<Account> {
               ]),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("EMAIL"),
-                    hintText: 'abc@gamil.com',
-                    hintStyle: TextStyle(color: Colors.black26),
-                  ),
+                //   child: TextField(
+                //     decoration: InputDecoration(
+                //       border: OutlineInputBorder(),
+                //       label: Text("EMAIL"),
+                //       hintText: 'abc@gamil.com',
+                //       hintStyle: TextStyle(color: Colors.black26),
+                //     ),
+                //   ),
+                child: MyTextFormField(
+                  name: "Email",
+                  validator: (value) {
+                    if (value == "") {
+                      return "Please Fill Email";
+                    } else if (!regExp.hasMatch(value!)) {
+                      return "Email Is Invalid";
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    setState(() {
+                      if (value != null) {
+                        email = value;
+                        print(email);
+                      }
+                    });
+                  },
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("CONTACT NO."),
-                    hintText: 'CONTACT NO.',
-                    hintStyle: TextStyle(color: Colors.black26),
-                  ),
+                // child: TextField(
+                //   decoration: InputDecoration(
+                //     border: OutlineInputBorder(),
+                //     label: Text("CONTACT NO."),
+                //     hintText: 'CONTACT NO.',
+                //     hintStyle: TextStyle(color: Colors.black26),
+                //   ),
+                // ),
+                child: MyTextFormField(
+                  validator: (value) {
+                    if (value == "") {
+                      return "Please Fill Contact No.";
+                    } else if (!regExpt.hasMatch(value!)) {
+                      return "Contact No. Is Invalid";
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    setState(() {
+                      if (value != null) {
+                        email = value;
+                        print(email);
+                      }
+                    });
+                  },
+                  name: 'Contact No.',
                 ),
               ),
               SizedBox(

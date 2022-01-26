@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:final_project/Pages/Trip_Ideas/offers.dart';
+import 'package:final_project/Pages/Offers/offer_details.dart';
 import 'package:flutter/material.dart';
 
 class OfferContainer extends StatelessWidget {
@@ -19,14 +19,28 @@ class OfferContainer extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => Offer()));
+                context,
+                MaterialPageRoute(
+                    builder: (_) => Offer(
+                          adImg: "images/adimg4.jpg",
+                        )));
           },
-          child: Image.network(
-            "https://res.cloudinary.com/getawayimagecloud/image/"
-            "upload/v1637330671/getAwayImages/banner-"
-            "template-with-asia-travel-concept-design-"
-            "advertise-marketing-watercolor-vector-"
-            "illustration_83728-5305_um8icm.jpg",
+          child: Image.asset(
+            "images/adimg4.jpg",
+            fit: BoxFit.cover,
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => Offer(
+                          adImg: "images/adimg2.jpg",
+                        )));
+          },
+          child: Image.asset(
+            "images/adimg2.jpg",
             fit: BoxFit.cover,
             width: size.width,
           ),
@@ -34,26 +48,14 @@ class OfferContainer extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => Offer()));
+                context,
+                MaterialPageRoute(
+                    builder: (_) => Offer(
+                          adImg: "images/adimg3.jpg",
+                        )));
           },
-          child: Image.network(
-            "https://res.cloudinary.com/getawayimagecloud/image/"
-            "upload/v1637330713/getAwayImages/"
-            "dubai-city-tour-travel-agency"
-            "-banner-free-psd_xkjaev.jpg",
-            fit: BoxFit.cover,
-            width: size.width,
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => Offer()));
-          },
-          child: Image.network(
-            "https://res.cloudinary.com/g"
-            "etawayimagecloud/image/upload/v1637330801/"
-            "getAwayImages/andaman_gb6wl8.jpg",
+          child: Image.asset(
+            "images/adimg3.jpg",
             fit: BoxFit.cover,
             width: size.width,
           ),

@@ -2,8 +2,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Interest extends StatelessWidget {
-  const Interest({Key? key}) : super(key: key);
+  //const Interest({Key? key}) : super(key: key);
+  final String name;
+  final String image;
+  final String name1;
+  final String image1;
+  final String name2;
+  final String image2;
+  final String name3;
+  final String image3;
+  final String name4;
+  final String image4;
 
+  Interest(
+      {required this.name,
+      required this.image,
+      required this.name1,
+      required this.image1,
+      required this.name2,
+      required this.image2,
+      required this.name3,
+      required this.image3,
+      required this.name4,
+      required this.image4});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,12 +40,12 @@ class Interest extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: Image.network(
-                    "https://www.incimages.com/uploaded_files/image/1920x1080/getty_511013546_363734.jpg",
+                    image,
                     fit: BoxFit.fill,
                   ),
                 ),
                 Text(
-                  'International under\n50000',
+                  name,
                   style: TextStyle(
                       color: Colors.cyan,
                       fontSize: 16,
@@ -41,12 +62,12 @@ class Interest extends StatelessWidget {
                 height: 150,
                 width: 150,
                 child: Image.network(
-                  "https://warnercnr.colostate.edu/wp-content/uploads/sites/2/2017/04/shutterstock_428626417-1024x683.jpg",
+                  image1,
                   fit: BoxFit.fill,
                 ),
               ),
               Text(
-                'Weekend adventure\n spot',
+                name1,
                 style: TextStyle(
                     color: Colors.pink,
                     fontSize: 16,
@@ -62,12 +83,12 @@ class Interest extends StatelessWidget {
                 height: 150,
                 width: 150,
                 child: Image.network(
-                  "https://p3n3w9t2.rocketcdn.me/wp-content/uploads/2019/01/pilgrimage-sites-india-header.jpg",
+                  image2,
                   fit: BoxFit.fill,
                 ),
               ),
               Text(
-                'Pilgrimage spots\nunder 20000',
+                name2,
                 style: TextStyle(
                     color: Colors.cyan,
                     fontSize: 16,
@@ -83,12 +104,12 @@ class Interest extends StatelessWidget {
                 height: 150,
                 width: 150,
                 child: Image.network(
-                  "https://lotusarise.com/wp-content/uploads/2021/01/Wildlife-Problems-of-Wildlife-Wildlife-Conservation.jpg",
+                  image3,
                   fit: BoxFit.fill,
                 ),
               ),
               Text(
-                'Wildlife\nhotspots',
+                name3,
                 style: TextStyle(
                     color: Colors.pink,
                     fontSize: 16,
@@ -104,12 +125,12 @@ class Interest extends StatelessWidget {
                 height: 150,
                 width: 150,
                 child: Image.network(
-                  "https://wallpaperaccess.com/full/899763.jpg",
+                  image4,
                   fit: BoxFit.fill,
                 ),
               ),
               Text(
-                'Romantic \nDestination',
+                name4,
                 style: TextStyle(
                     color: Colors.cyan,
                     fontSize: 16,
